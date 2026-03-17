@@ -1,0 +1,48 @@
+# 市场分析工作流
+name: Market Analysis Pipeline
+description: 投资市场分析流程
+
+nodes:
+  - id: collect
+    name: 数据收集
+    type: data_collection
+    agent: researcher
+    input:
+      sources: [news, reports, social]
+      timeframe: 30d
+    
+  - id: analyze
+    name: 市场分析
+    type: market_analysis
+    agent: analyst
+    dependencies: [collect]
+    input:
+      methods: [trend, sentiment, competitive]
+    
+  - id: research
+    name: 深度研究
+    type: investment_research
+    agent: researcher
+    dependencies: [analyze]
+    
+  - id: strategy
+    name: 策略制定
+    type: strategy_planning
+    agent: strategist
+    dependencies: [research]
+    
+  - id: report
+    name: 生成报告
+    type: report
+    agent: analyst
+    dependencies: [strategy]
+
+edges:
+  - from: collect
+    to: analyze
+  - from: analyze
+    to: research
+  - from: research
+    to: strategy
+  - from: strategy
+    to: report

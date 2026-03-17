@@ -1,0 +1,14 @@
+{
+  "name": "ai-corps-monorepo",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint"
+  },
+  "devDependencies": {
+    "pnpm": "^8.0.0"
+  }
+}

@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  agents    Agent[]
+  tasks     Task[]
+}
+
+model Agent {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  avatarUrl   String?
+  department  String   @default("general") // general, research, content, dev, data, customer, investment, marketing, operations
+  modelId     String   @default("gpt-4o")
+  status      String   @default("idle") // idle, busy, error, offline
+  budgetMonthly Float?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  tasks       Task[]
+  metrics     AgentMetrics?
+  logs        TaskLog[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  status      String   @default("pending") // pending, running, completed, failed, cancelled
+  priority    Int      @default(0)
+  agentId     String?
+  agent       Agent?   @relation(fields: [agentId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  scheduledAt DateTime?
+  startedAt   DateTime?
+  completedAt DateTime?
+  result      Json?
+  metadata    Json?
+  logs        TaskLog[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TaskLog {
+  id        String   @id @default(uuid())
+  taskId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  agentId   String?
+  agent     Agent?   @relation(fields: [agentId], references: [id])
+  level     String   @default("info") // info, warning, error
+  message   String
+  metadata  Json?
+  createdAt DateTime @default(now())
+}
+
+model AgentMetrics {
+  id              String   @id @default(uuid())
+  agentId         String   @unique
+  agent           Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  totalTasks      Int      @default(0)
+  successRate     Float    @default(0)
+  avgDurationSec  Float    @default(0)
+  totalTokens     Int      @default(0)
+  totalCost       Float    @default(0)
+  lastUpdated     DateTime @default(now())
+}

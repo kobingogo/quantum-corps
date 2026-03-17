@@ -1,0 +1,57 @@
+# 代码审查工作流
+name: Code Review Pipeline
+description: 自动化代码审查流程
+
+nodes:
+  - id: lint
+    name: 代码规范检查
+    type: lint
+    agent: reviewer
+    input:
+      checkStyle: true
+      checkFormat: true
+    
+  - id: security
+    name: 安全扫描
+    type: security_scan
+    agent: reviewer
+    dependencies: [lint]
+    input:
+      scanVulnerabilities: true
+      checkDependencies: true
+    
+  - id: review
+    name: 代码审查
+    type: code_review
+    agent: reviewer
+    dependencies: [lint, security]
+    input:
+      depth: thorough
+      checkPatterns: true
+    
+  - id: test
+    name: 测试覆盖
+    type: test_coverage
+    agent: tester
+    dependencies: [review]
+    input:
+      minCoverage: 80
+      runUnitTests: true
+    
+  - id: report
+    name: 生成报告
+    type: report
+    agent: reviewer
+    dependencies: [test]
+
+edges:
+  - from: lint
+    to: security
+  - from: lint
+    to: review
+  - from: security
+    to: review
+  - from: review
+    to: test
+  - from: test
+    to: report

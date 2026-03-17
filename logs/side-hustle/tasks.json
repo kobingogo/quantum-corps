@@ -1,0 +1,18 @@
+{
+  "tasks": [
+    {
+      "id": "task-mma24zc1-tv2m",
+      "title": "如何使用 openclaw 做闲鱼",
+      "description": "给出一个完整可行的，且角度新颖的AI 运营闲鱼售卖技术能力相关的方案",
+      "status": "pending",
+      "priority": "medium",
+      "agent": "side-hustle-opportunity-001",
+      "legion": "side-hustle",
+      "createdBy": "user",
+      "createdAt": "2026-03-03T03:37:54.913Z",
+      "reviewRequired": true,
+      "reviewed": false
+    }
+  ],
+  "lastUpdated": "2026-03-03T03:37:54.915Z"
+}

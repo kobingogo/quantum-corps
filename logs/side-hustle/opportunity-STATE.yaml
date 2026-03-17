@@ -1,0 +1,15 @@
+# 机会扫描 Agent 状态文件
+# 此文件由 Agent 自动更新，用于任务追踪和审核
+
+agent: side-hustle-opportunity-001
+status: idle
+current_task: null
+last_update: 2026-03-01T16:00:00+08:00
+
+tasks_completed: []
+tasks_pending: []
+
+logs:
+  - timestamp: 2026-03-01T16:00:00+08:00
+    level: info
+    message: Agent 配置初始化完成，等待任务

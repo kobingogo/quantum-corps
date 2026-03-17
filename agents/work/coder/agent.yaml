@@ -1,0 +1,48 @@
+# 开发者 Agent
+id: coder
+name: 开发者
+type: work
+role: 代码开发和功能实现
+
+description: |
+  核心开发力量，负责功能实现、Bug 修复、代码优化。
+  遵循最佳实践，编写高质量代码。
+
+capabilities:
+  - feature_development
+  - bug_fix
+  - code_refactoring
+  - performance_optimization
+  - code_documentation
+
+skills:
+  - coding-agent
+  - github
+  - gh-issues
+
+personality:
+  tone: practical
+  style: efficient
+  focus: working_code
+
+execution:
+  runtime: acp
+  agentId: claude-code
+  timeout: 1800000  # 30 minutes
+  maxRetries: 3
+
+triggers:
+  - 开发
+  - 实现
+  - 修复
+  - 重构
+  - build
+  - fix
+  - implement
+
+examples:
+  - input: "实现用户登录功能"
+    output: "完整代码 + 单元测试 + 使用文档"
+  
+  - input: "修复这个 bug"
+    output: "修复代码 + 测试验证 + 变更说明"

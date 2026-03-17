@@ -1,0 +1,16 @@
+{"timestamp":"2026-03-01T11:48:26.135Z","level":"INFO","message":"Creating workflow: Feature Development Test","context":"orchestrator:orchestrator","data":{"nodeCount":3}}
+{"timestamp":"2026-03-01T12:21:22.960Z","level":"INFO","message":"Creating workflow: Feature Development Test","context":"orchestrator:orchestrator","data":{"nodeCount":3}}
+{"timestamp":"2026-03-01T13:41:26.373Z","level":"INFO","message":"准备生成 Agent: coder","context":"orchestrator:openclaw-integration","data":{"runtime":"acp","taskId":"test_task_001"}}
+{"timestamp":"2026-03-01T13:41:26.376Z","level":"INFO","message":"Agent 参数已准备","context":"orchestrator:openclaw-integration","data":{"sessionId":"session_coder_1772372486375","spawnParams":{"runtime":"acp","agentId":"claude-code","task":"作为开发者，请实现以下功能：\n\n任务: 实现用户登录功能\n描述: 包含用户名密码登录和 OAuth 登录\n输入: {\n  \"techStack\": [\n    \"React\",\n    \"Node.js\"\n  ]\n}\n\n请提供完整的代码实现，包括:\n1. 核心代码\n2. 单元测试\n3. 使用文档\n\n工作目录: /Users/bingo/openclaw_all","mode":"run","label":"coder-test_task_001","cwd":"/Users/bingo/openclaw_all","timeoutSeconds":1800}}}
+{"timestamp":"2026-03-03T00:31:54.692Z","level":"INFO","message":"Creating workflow: Feature Development Test","context":"orchestrator:orchestrator","data":{"nodeCount":3}}
+{"timestamp":"2026-03-03T01:26:41.333Z","level":"INFO","message":"Creating workflow: Feature Development Test","context":"orchestrator:orchestrator","data":{"nodeCount":3}}
+{"timestamp":"2026-03-03T01:48:53.189Z","level":"INFO","message":"Creating workflow: Feature Development Test","context":"orchestrator:orchestrator","data":{"nodeCount":3}}
+{"timestamp":"2026-03-03T01:57:03.906Z","level":"INFO","message":"没有待处理任务","context":"orchestrator:executor"}
+{"timestamp":"2026-03-03T01:57:03.905Z","level":"INFO","message":"查找待处理任务...","context":"orchestrator:executor"}
+{"timestamp":"2026-03-03T05:02:10.672Z","level":"INFO","message":"查找待处理任务...","context":"orchestrator:executor"}
+{"timestamp":"2026-03-03T05:02:10.673Z","level":"INFO","message":"没有待处理任务","context":"orchestrator:executor"}
+{"timestamp":"2026-03-03T06:57:34.909Z","level":"ERROR","message":"任务不存在：task_1772514101866_x5h5a4r65","context":"orchestrator:executor","data":{}}
+{"timestamp":"2026-03-03T07:02:59.903Z","level":"ERROR","message":"任务不存在：task_1772514101866_x5h5a4r65","context":"orchestrator:executor","data":{}}
+{"timestamp":"2026-03-03T07:03:01.783Z","level":"ERROR","message":"任务不存在：task_1772514101866_x5h5a4r65","context":"orchestrator:executor","data":{}}
+{"timestamp":"2026-03-03T07:03:02.701Z","level":"ERROR","message":"任务不存在：task_1772514101866_x5h5a4r65","context":"orchestrator:executor","data":{}}
+{"timestamp":"2026-03-03T07:03:04.440Z","level":"ERROR","message":"任务不存在：task_1772514101866_x5h5a4r65","context":"orchestrator:executor","data":{}}

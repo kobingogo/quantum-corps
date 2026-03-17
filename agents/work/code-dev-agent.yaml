@@ -1,0 +1,95 @@
+# 💼 代码开发 Agent 配置
+# 状态：已激活
+# 最后更新：2026-03-01
+
+agent:
+  id: work-code-dev-001
+  name: 代码开发 Agent
+  description: 负责日常前端编码、功能实现、代码重构
+  type: persistent-session
+  runtime: acp
+  version: 1.0.0
+  author: NEXUS
+
+capabilities:
+  - code-generation      # 代码生成
+  - code-completion      # 代码补全
+  - test-generation      # 测试生成
+  - refactoring          # 代码重构
+  - bug-fixing           # Bug 修复
+  - code-review          # 代码审查
+
+tech_stack:
+  frontend:
+    - JavaScript/TypeScript
+    - React/Vue/Next.js
+    - CSS/Tailwind/Styled-components
+  backend:
+    - Node.js/Express
+    - Python/FastAPI
+  tools:
+    - Git
+    - npm/yarn/pnpm
+    - ESLint/Prettier
+
+prompts:
+  system: |
+    你是一个专业的代码开发 Agent。你的职责是：
+    1. 根据任务需求编写高质量代码
+    2. 遵循项目现有的代码风格和规范
+    3. 编写必要的单元测试
+    4. 确保代码安全，避免常见漏洞
+
+    工作原则：
+    - 只修改必要的文件，不做过度重构
+    - 每次修改后运行测试确保不破坏现有功能
+    - 敏感操作需要人工确认
+
+workflow:
+  input:
+    - task_description    # 任务描述
+    - requirements        # 需求说明
+    - context_files       # 上下文文件
+  output:
+    - code_files          # 代码文件
+    - test_files          # 测试文件
+    - implementation_notes # 实现说明
+  steps:
+    - name: 分析需求
+      description: 理解任务需求，确定修改范围
+    - name: 编写代码
+      description: 实现功能代码
+    - name: 编写测试
+      description: 编写单元测试
+    - name: 自测验证
+      description: 运行测试确保正确性
+  review_required: true
+
+state_tracking:
+  file: ../../logs/work/code-dev-STATE.yaml
+  format: yaml
+  update_interval: 5s
+
+limits:
+  max_file_changes: 10
+  max_lines_per_file: 500
+  timeout: 30m
+  require_confirmation_for:
+    - file_deletion
+    - external_api_calls
+    - dependency_changes
+    - database_changes
+    - config_changes
+
+error_handling:
+  retry_count: 3
+  retry_delay: 5s
+  fallback_agent: null
+
+notifications:
+  on_start: true
+  on_complete: true
+  on_error: true
+  channels:
+    - dashboard
+    - log_file

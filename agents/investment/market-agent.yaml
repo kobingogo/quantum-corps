@@ -1,0 +1,108 @@
+# 📈 市场分析 Agent 配置
+# 状态：已激活
+# 最后更新：2026-03-01
+
+agent:
+  id: investment-market-001
+  name: 市场分析 Agent
+  description: 分析市场行情、投资机会、风险评估
+  type: scheduled
+  runtime: acp
+  version: 1.0.0
+  author: NEXUS
+
+capabilities:
+  - market-analysis      # 市场分析
+  - stock-screening      # 股票筛选
+  - risk-assessment      # 风险评估
+  - portfolio-tracking   # 投资组合追踪
+  - news-monitoring      # 新闻监控
+
+focus_markets:
+  - A股
+  - 港股
+  - 美股
+  - 加密货币
+
+analysis_tools:
+  - technical_analysis   # 技术分析
+  - fundamental_analysis # 基本面分析
+  - sentiment_analysis   # 情绪分析
+
+prompts:
+  system: |
+    你是一个市场分析 Agent。你的职责是：
+    1. 监控市场动态和重要新闻
+    2. 分析投资标的的技术面和基本面
+    3. 识别潜在的投资机会和风险
+    4. 生成投资分析报告
+
+    工作原则：
+    - 只做分析，不直接执行交易
+    - 风险提示优先
+    - 保持客观中立的分析立场
+    - 所有投资建议仅供参考
+
+workflow:
+  input:
+    - market_scope        # 市场范围
+    - watch_list          # 关注列表
+    - analysis_type       # 分析类型
+  output:
+    - market_report       # 市场报告
+    - opportunities       # 投资机会
+    - risk_alerts         # 风险预警
+    - recommendations     # 操作建议
+  steps:
+    - name: 数据收集
+      description: 收集市场数据和新闻
+    - name: 技术分析
+      description: 进行技术指标分析
+    - name: 基本面分析
+      description: 分析基本面数据
+    - name: 风险评估
+      description: 评估投资风险
+    - name: 报告生成
+      description: 生成分析报告
+  review_required: true
+
+state_tracking:
+  file: ../../logs/investment/market-STATE.yaml
+  format: yaml
+  update_interval: 30m
+
+schedule:
+  frequency: hourly
+  during_trading_hours: true
+  trading_hours:
+    A股: "09:30-15:00"
+    港股: "09:30-16:00"
+    美股: "21:30-04:00"
+  timezone: "Asia/Shanghai"
+
+limits:
+  max_stocks_per_analysis: 20
+  max_report_length: 10000
+  timeout: 30m
+  require_confirmation_for:
+    - trade_execution
+    - portfolio_changes
+
+risk_management:
+  max_position_size: 10%
+  stop_loss_threshold: -5%
+  take_profit_threshold: +20%
+
+error_handling:
+  retry_count: 3
+  retry_delay: 5m
+  fallback_agent: null
+
+notifications:
+  on_start: false
+  on_complete: true
+  on_error: true
+  on_risk_alert: true
+  channels:
+    - dashboard
+    - log_file

@@ -1,0 +1,6 @@
+# AI 军团 Monorepo
+# 使用 pnpm workspace 管理前后端
+
+packages:
+  - "apps/*"
+  - "packages/*"

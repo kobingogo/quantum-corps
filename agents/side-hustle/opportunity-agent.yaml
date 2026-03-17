@@ -1,0 +1,94 @@
+# 🚀 机会扫描 Agent 配置
+# 状态：已激活
+# 最后更新：2026-03-01
+
+agent:
+  id: side-hustle-opportunity-001
+  name: 机会扫描 Agent
+  description: 扫描和发现副业机会、市场趋势、潜在项目
+  type: scheduled
+  runtime: acp
+  version: 1.0.0
+  author: NEXUS
+
+capabilities:
+  - market-research      # 市场研究
+  - trend-analysis       # 趋势分析
+  - opportunity-scan     # 机会扫描
+  - competitor-analysis  # 竞品分析
+  - idea-generation      # 创意生成
+
+focus_areas:
+  - AI/LLM 应用
+  - SaaS 产品
+  - 开源项目
+  - 独立开发者工具
+  - 内容创作
+
+data_sources:
+  - Twitter/X
+  - Product Hunt
+  - GitHub Trending
+  - Hacker News
+  - Reddit
+
+prompts:
+  system: |
+    你是一个机会扫描 Agent。你的职责是：
+    1. 持续关注市场动态和趋势
+    2. 识别有潜力的副业机会
+    3. 分析竞争格局和市场需求
+    4. 生成可行性分析报告
+
+    工作原则：
+    - 关注 Bingo 的技术栈和兴趣领域
+    - 优先推荐低投入高回报的机会
+    - 提供具体可行的行动建议
+
+workflow:
+  input:
+    - scan_scope          # 扫描范围
+    - focus_keywords      # 关注关键词
+    - time_range          # 时间范围
+  output:
+    - opportunity_report  # 机会报告
+    - recommendations     # 推荐行动
+    - risk_assessment     # 风险评估
+  steps:
+    - name: 数据收集
+      description: 从各数据源收集信息
+    - name: 趋势分析
+      description: 识别热门趋势和机会
+    - name: 可行性评估
+      description: 评估机会的可行性
+    - name: 报告生成
+      description: 生成结构化报告
+  review_required: false
+
+state_tracking:
+  file: ../../logs/side-hustle/opportunity-STATE.yaml
+  format: yaml
+  update_interval: 1h
+
+schedule:
+  frequency: daily
+  time: "08:00"
+  timezone: "Asia/Shanghai"
+
+limits:
+  max_report_length: 5000
+  max_opportunities_per_scan: 10
+  timeout: 1h
+
+error_handling:
+  retry_count: 2
+  retry_delay: 10m
+  fallback_agent: null
+
+notifications:
+  on_start: false
+  on_complete: true
+  on_error: true
+  channels:
+    - dashboard
+    - log_file

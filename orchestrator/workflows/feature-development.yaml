@@ -1,0 +1,59 @@
+# 功能开发工作流
+name: Feature Development Pipeline
+description: 完整的功能开发流程
+
+nodes:
+  - id: design
+    name: 架构设计
+    type: architecture
+    agent: architect
+    input:
+      produceDiagram: true
+      defineInterfaces: true
+    
+  - id: implement
+    name: 功能实现
+    type: feature_development
+    agent: coder
+    dependencies: [design]
+    
+  - id: review
+    name: 代码审查
+    type: code_review
+    agent: reviewer
+    dependencies: [implement]
+    
+  - id: test
+    name: 编写测试
+    type: testing
+    agent: tester
+    dependencies: [implement]
+    
+  - id: fix
+    name: 修复问题
+    type: bug_fix
+    agent: coder
+    dependencies: [review, test]
+    condition: hasIssues
+    
+  - id: docs
+    name: 更新文档
+    type: documentation
+    agent: architect
+    dependencies: [test]
+
+edges:
+  - from: design
+    to: implement
+  - from: implement
+    to: review
+  - from: implement
+    to: test
+  - from: review
+    to: fix
+  - from: test
+    to: fix
+  - from: fix
+    to: review
+  - from: test
+    to: docs

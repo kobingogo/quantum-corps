@@ -1,0 +1,42 @@
+[
+  {
+    "type": "code_development",
+    "title": "帮我开发一个用户登录功能",
+    "description": "帮我开发一个用户登录功能",
+    "status": "running",
+    "priority": "high",
+    "input": {
+      "text": "帮我开发一个用户登录功能",
+      "intent": {
+        "category": "code_development",
+        "confidence": 1,
+        "entities": {},
+        "suggestedAgent": "coder",
+        "suggestedWorkflow": "feature-development",
+        "reasoning": "短语匹配: 开发一个"
+      }
+    },
+    "maxRetries": 3,
+    "id": "task_1772372091200_lxhluqeki",
+    "createdAt": 1772372091200,
+    "updatedAt": 1772498051000,
+    "retryCount": 0
+  },
+  {
+    "id": "task_1772514101866_x5h5a4r65",
+    "type": "code_development",
+    "title": "🧪 测试任务 - Python Hello World",
+    "description": "🧪 测试任务 - Python Hello World",
+    "status": "cancelled",
+    "priority": "medium",
+    "input": {
+      "text": "🧪 测试任务 - Python Hello World"
+    },
+    "maxRetries": 3,
+    "retryCount": 0,
+    "createdAt": 1772514101866,
+    "updatedAt": 1772521384795,
+    "startedAt": 1772514129193,
+    "approved": true
+  }
+]

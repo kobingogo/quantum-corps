@@ -1,0 +1,49 @@
+# 机会扫描工作流
+name: Opportunity Scan Pipeline
+description: 副业机会发现和分析流程
+
+nodes:
+  - id: scan
+    name: 市场扫描
+    type: opportunity_scan
+    agent: scout
+    input:
+      categories: [trends, demands, gaps]
+      sources: [reddit, twitter, producthunt]
+    
+  - id: filter
+    name: 机会筛选
+    type: filtering
+    agent: scout
+    dependencies: [scan]
+    input:
+      minPotential: medium
+      maxCompetition: medium
+    
+  - id: analyze
+    name: 可行性分析
+    type: feasibility_analysis
+    agent: builder
+    dependencies: [filter]
+    
+  - id: mvp
+    name: MVP 规划
+    type: mvp_planning
+    agent: builder
+    dependencies: [analyze]
+    
+  - id: monetize
+    name: 变现策略
+    type: monetization
+    agent: marketer
+    dependencies: [mvp]
+
+edges:
+  - from: scan
+    to: filter
+  - from: filter
+    to: analyze
+  - from: analyze
+    to: mvp
+  - from: mvp
+    to: monetize
