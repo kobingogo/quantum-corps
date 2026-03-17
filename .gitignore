@@ -87,3 +87,6 @@ secrets/
 Thumbs.db
 .Spotlight-V100
 .Trashes
+
+# Legacy projects (保留但不追踪)
+shared/dashboard/
