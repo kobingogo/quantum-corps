@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { BullModule } from '@nestjs/bull';
 import { TasksService } from './tasks.service';
 import { TasksController } from './tasks.controller';
-import { BullModule } from '@nestjs/bull';
+import { TaskProcessor } from './task.processor';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { BullModule } from '@nestjs/bull';
     }),
   ],
   controllers: [TasksController],
-  providers: [TasksService],
-  exports: [TasksService],
+  providers: [TasksService, TaskProcessor],
+  exports: [TasksService, BullModule],
 })
 export class TasksModule {}

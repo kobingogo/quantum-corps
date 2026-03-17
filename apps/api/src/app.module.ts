@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { AgentsModule } from './agents/agents.module';
 import { TasksModule } from './tasks/tasks.module';
 import { EventsModule } from './events/events.module';
+import { IntentModule } from './intent/intent.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { EventsModule } from './events/events.module';
     AgentsModule,
     TasksModule,
     EventsModule,
+    IntentModule,
   ],
 })
 export class AppModule {}
